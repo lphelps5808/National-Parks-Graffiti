@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10273A1C1B0596BD00A1884D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10273A1B1B0596BD00A1884D /* LocationManager.swift */; };
+		10273A201B06DF5C00A1884D /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 10273A1F1B06DF5C00A1884D /* Constants.m */; };
 		1079AE761AF6FEF100414AE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079AE751AF6FEF100414AE4 /* AppDelegate.swift */; };
 		1079AE791AF6FEF100414AE4 /* NationalParkGraffiti.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1079AE771AF6FEF100414AE4 /* NationalParkGraffiti.xcdatamodeld */; };
 		1079AE7B1AF6FEF100414AE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079AE7A1AF6FEF100414AE4 /* ViewController.swift */; };
@@ -28,6 +30,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10273A1B1B0596BD00A1884D /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		10273A1D1B06DF5C00A1884D /* NationalParkGraffiti-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NationalParkGraffiti-Bridging-Header.h"; sourceTree = "<group>"; };
+		10273A1E1B06DF5C00A1884D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		10273A1F1B06DF5C00A1884D /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		1079AE701AF6FEF100414AE4 /* NationalParkGraffiti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NationalParkGraffiti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1079AE741AF6FEF100414AE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1079AE751AF6FEF100414AE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,11 +94,15 @@
 			children = (
 				1079AE751AF6FEF100414AE4 /* AppDelegate.swift */,
 				1079AE7A1AF6FEF100414AE4 /* ViewController.swift */,
+				10273A1B1B0596BD00A1884D /* LocationManager.swift */,
+				10273A1E1B06DF5C00A1884D /* Constants.h */,
+				10273A1F1B06DF5C00A1884D /* Constants.m */,
 				1079AE7C1AF6FEF100414AE4 /* Main.storyboard */,
 				1079AE7F1AF6FEF100414AE4 /* Images.xcassets */,
 				1079AE811AF6FEF100414AE4 /* LaunchScreen.xib */,
 				1079AE771AF6FEF100414AE4 /* NationalParkGraffiti.xcdatamodeld */,
 				1079AE731AF6FEF100414AE4 /* Supporting Files */,
+				10273A1D1B06DF5C00A1884D /* NationalParkGraffiti-Bridging-Header.h */,
 			);
 			path = NationalParkGraffiti;
 			sourceTree = "<group>";
@@ -290,6 +300,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10273A201B06DF5C00A1884D /* Constants.m in Sources */,
+				10273A1C1B0596BD00A1884D /* LocationManager.swift in Sources */,
 				1079AE7B1AF6FEF100414AE4 /* ViewController.swift in Sources */,
 				1079AE761AF6FEF100414AE4 /* AppDelegate.swift in Sources */,
 				1079AE791AF6FEF100414AE4 /* NationalParkGraffiti.xcdatamodeld in Sources */,
@@ -416,9 +428,12 @@
 			baseConfigurationReference = 221007ED028A847E43469C2A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = NationalParkGraffiti/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "NationalParkGraffiti/NationalParkGraffiti-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -427,9 +442,11 @@
 			baseConfigurationReference = 70A2DD9111E4A73A092B61D5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = NationalParkGraffiti/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "NationalParkGraffiti/NationalParkGraffiti-Bridging-Header.h";
 			};
 			name = Release;
 		};

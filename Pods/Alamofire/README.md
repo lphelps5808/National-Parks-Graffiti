@@ -20,7 +20,7 @@ Alamofire is an HTTP networking library written in Swift, from the [creator](htt
 ## Requirements
 
 - iOS 7.0+ / Mac OS X 10.9+
-- Xcode 6.3
+- Xcode 6.1
 
 ## Communication
 
@@ -40,10 +40,10 @@ Alamofire is an HTTP networking library written in Swift, from the [creator](htt
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects.
 
-CocoaPods 0.36 adds supports for Swift and embedded frameworks. You can install it with the following command:
+CocoaPods 0.36 beta adds supports for Swift and embedded frameworks. You can install it with the following command:
 
 ```bash
-$ gem install cocoapods
+$ gem install cocoapods --pre
 ```
 
 To integrate Alamofire into your Xcode project using CocoaPods, specify it in your `Podfile`:
@@ -51,9 +51,8 @@ To integrate Alamofire into your Xcode project using CocoaPods, specify it in yo
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
-use_frameworks!
 
-pod 'Alamofire', '~> 1.2'
+pod 'Alamofire', '~> 1.1'
 ```
 
 Then, run the following command:
@@ -76,7 +75,7 @@ $ brew install carthage
 To integrate Alamofire into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "Alamofire/Alamofire" >= 1.2
+github "Alamofire/Alamofire" >= 1.1
 ```
 
 ### Manually
@@ -242,7 +241,7 @@ enum ParameterEncoding {
 }
 ```
 
-- `URL`: A query string to be set as or appended to any existing URL query for `GET`, `HEAD`, and `DELETE` requests, or set as the body for requests with any other HTTP method. The `Content-Type` HTTP header field of an encoded request with HTTP body is set to `application/x-www-form-urlencoded`. _Since there is no published specification for how to encode collection types, Alamofire follows the convention of appending `[]` to the key for array values (`foo[]=1&foo[]=2`), and appending the key surrounded by square brackets for nested dictionary values (`foo[bar]=baz`)._
+- `URL`: A query string to be set as or appended to any existing URL query for `GET`, `HEAD`, and `DELETE` requests, or set as the body for requests with any other HTTP method. The `Content-Type` HTTP header field of an encoded request with HTTP body is set to `application/x-www-form-urlencoded`. _Since there is no published specification for how to encode collection types, the convention of appending `[]` to the key for array values (`foo[]=1&foo[]=2`), and appending the key surrounded by square brackets for nested dictionary values (`foo[bar]=baz`)._
 - `JSON`: Uses `NSJSONSerialization` to create a JSON representation of the parameters object, which is set as the body of the request. The `Content-Type` HTTP header field of an encoded request is set to `application/json`.
 - `PropertyList`: Uses `NSPropertyListSerialization` to create a plist representation of the parameters object, according to the associated format and write options values, which is set as the body of the request. The `Content-Type` HTTP header field of an encoded request is set to `application/x-plist`.
 - `Custom`: Uses the associated closure value to construct a new request given an existing request and parameters.
@@ -255,7 +254,7 @@ var request = NSURLRequest(URL: URL)
 
 let parameters = ["foo": "bar"]
 let encoding = Alamofire.ParameterEncoding.URL
-(request, _) = encoding.encode(request, parameters: parameters)
+(request, _) = encoding.encode(request, parameters)
 ```
 
 #### POST Request with JSON-encoded Parameters
@@ -538,15 +537,15 @@ extension Request {
             }
 
             var XMLSerializationError: NSError?
-            let XML = ONOXMLDocument(data: data, &XMLSerializationError)
+            let XML = ONOXMLDocument.XMLDocumentWithData(data, &XMLSerializationError)
 
             return (XML, XMLSerializationError)
         }
     }
 
-    func responseXMLDocument(completionHandler: (NSURLRequest, NSHTTPURLResponse?, ONOXMLDocument?, NSError?) -> Void) -> Self {
+    func responseXMLDocument(completionHandler: (NSURLRequest, NSHTTPURLResponse?, OnoXMLDocument?, NSError?) -> Void) -> Self {
         return response(serializer: Request.XMLResponseSerializer(), completionHandler: { (request, response, XML, error) in
-            completionHandler(request, response, XML as? ONOXMLDocument, error)
+            completionHandler(request, response, XML, error)
         })
     }
 }
@@ -627,59 +626,49 @@ extension Alamofire.Request {
 
 ### URLStringConvertible
 
-Types adopting the `URLStringConvertible` protocol can be used to construct URL strings, which are then used to construct URL requests. `NSString`, `NSURL`, `NSURLComponents`, and `NSURLRequest` conform to `URLStringConvertible` by default, allowing any of them to be passed as `URLString` parameters to the `request`, `upload`, and `download` methods:
+Types adopting the `URLStringConvertible` protocol can be used to construct URL strings, which are then used to construct URL requests. Top-level convenience methods taking a `URLStringConvertible` argument are provided to allow for type-safe routing behavior.
 
-```swift
-let string = NSString(string: "http://httpbin.org/post")
-Alamofire.request(.POST, string)
-
-let URL = NSURL(string: string)!
-Alamofire.request(.POST, URL)
-
-let URLRequest = NSURLRequest(URL: URL)
-Alamofire.request(.POST, URLRequest) // overrides `HTTPMethod` of `URLRequest`
-
-let URLComponents = NSURLComponents(URL: URL, resolvingAgainstBaseURL: true)
-Alamofire.request(.POST, URLComponents)
-```
-
-Applications interacting with web applications in a significant manner are encouraged to have custom types conform to `URLStringConvertible` as a convenient way to map domain-specific models to server resources.
+Applications interacting with web applications in a significant manner are encouraged to adopt either `URLStringConvertible` or `URLRequestConvertible` as a way to ensure consistency of requested endpoints.
 
 #### Type-Safe Routing
 
 ```swift
-extension User: URLStringConvertible {
+enum Router: URLStringConvertible {
     static let baseURLString = "http://example.com"
 
+    case Root
+    case User(String)
+    case Post(Int, Int, String)
+
+    // MARK: URLStringConvertible
+
     var URLString: String {
-        return User.baseURLString + "/users/\(username)/"
+        let path: String = {
+            switch self {
+            case .Root:
+                return "/"
+            case .User(let username):
+                return "/users/\(username)"
+            case .Post(let year, let month, let title):
+                let slug = title.stringByReplacingOccurrencesOfString(" ", withString: "-").lowercaseString
+                return "/\(year)/\(month)/\(slug)"
+            }
+        }()
+
+        return Router.baseURLString + path
     }
 }
 ```
 
 ```swift
-let user = User(username: "mattt")
-Alamofire.request(.GET, user) // http://example.com/users/mattt
+Alamofire.request(.GET, Router.User("mattt"))
 ```
 
 ### URLRequestConvertible
 
-Types adopting the `URLRequestConvertible` protocol can be used to construct URL requests. `NSURLRequest` conforms to `URLRequestConvertible` by default, allowing it to be passed into `request`, `upload`, and `download` methods directly (this is the recommended way to specify custom HTTP header fields or HTTP body for individual requests):
+Types adopting the `URLRequestConvertible` protocol can be used to construct URL requests. Like `URLStringConvertible`, this is recommended for applications with any significant interactions between client and server.
 
-```swift
-let URL = NSURL(string: "http://httpbin.org/post")!
-let mutableURLRequest = NSMutableURLRequest(URL: URL)
-mutableURLRequest.HTTPMethod = "POST"
-
-let parameters = ["foo": "bar"]
-var JSONSerializationError: NSError? = nil
-mutableURLRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: nil, error: &JSONSerializationError)
-mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-Alamofire.request(mutableURLRequest)
-```
-
-Applications interacting with web applications in a significant manner are encouraged to have custom types conform to `URLRequestConvertible` as a way to ensure consistency of requested endpoints. Such an approach can be used to abstract away server-side inconsistencies and provide type-safe routing, as well as manage authentication credentials and other state.
+Top-level and instance methods on `Manager` taking `URLRequestConvertible` arguments are provided as a way to provide type-safe routing. Such an approach can be used to abstract away server-side inconsistencies, as well as manage authentication credentials and other state.
 
 #### API Parameter Abstraction
 

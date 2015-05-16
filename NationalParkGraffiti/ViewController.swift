@@ -8,8 +8,9 @@
 
 import UIKit
 import MobileCoreServices
+import CoreLocation
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, LocationUpdateDelegateProtocol {
     
     @IBAction func cameraDisplay(sender: AnyObject)
     {
@@ -38,7 +39,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        LocationManager.sharedInstanceLM
+        NotificationManager.sharedInstance.registerForLocationUpdates(self)
+        LocationManager.sharedInstanceLM.procureLocation()
+    }
+    
+    func didReceiveLocationUpdate(notification: NSNotification) {
+        if let location = notification.userInfo?[kLocationKey] as? CLLocation {
+            //handle location
+            println(location)
+        }
+    }
+    
+    func didReceiveLocationUpdateError(notification: NSNotification) {
+        if let error = notification.userInfo?[kLocationErrorKey] as? NSError {
+            // handle error
+            println(error)
+        }
+    }
+    
+    deinit {
+        NotificationManager.sharedInstance.deregisterForLocationUpdates(self)
     }
 
 }

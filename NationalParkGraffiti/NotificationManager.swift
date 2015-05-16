@@ -10,8 +10,8 @@ import Foundation
 
 private let _sharedInstance = NotificationManager()
 protocol LocationUpdateDelegateProtocol: class, NSObjectProtocol {
-    func didReceiveLocationUpdate(NotificationManager: NSNotification)
-    func didReceiveLocationUpdateError(NotificationManager: NSNotification)
+    func didReceiveLocationUpdate(notification: NSNotification)
+    func didReceiveLocationUpdateError(notification: NSNotification)
 }
 
 class NotificationManager {

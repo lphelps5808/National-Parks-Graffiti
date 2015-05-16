@@ -11,8 +11,8 @@ import CoreLocation
 import UIKit
 
 private let _sharedInstanceLM = LocationManager()
-private let kLocationKey = "location"
-private let kLocationErrorKey = "locationError"
+let kLocationKey = "location"
+let kLocationErrorKey = "locationError"
 
 
 final class LocationManager: NSObject, CLLocationManagerDelegate {

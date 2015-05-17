@@ -15,5 +15,8 @@ struct GPost {
     var userID: String
     var userName: String
     var park: String
+    
+    
+    
 }
     

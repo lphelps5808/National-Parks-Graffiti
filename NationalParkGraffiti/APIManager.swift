@@ -23,8 +23,8 @@ class APIManager {
     }
     
     func procurePosts(completion: PostsCompletionBlock) {
-        Alamofire.request(.GET, "", parameters: nil, encoding: .URL).responseJSON { (_, reponse, json, error) -> Void in
-            
+        Alamofire.request(.GET, "\(kBaseAPI)\(kGPostsEndpoint)", parameters: nil, encoding: .URL).responseJSON { (_, reponse, json, error) -> Void in
+            println(json)
         }
     }
     

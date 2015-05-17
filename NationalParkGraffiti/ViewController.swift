@@ -41,6 +41,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         NotificationManager.sharedInstance.registerForLocationUpdates(self)
         LocationManager.sharedInstanceLM.procureLocation()
+        procurePosts()
     }
     
     func procurePosts() {

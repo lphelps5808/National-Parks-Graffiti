@@ -43,6 +43,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         LocationManager.sharedInstanceLM.procureLocation()
     }
     
+    func procurePosts() {
+        APIManager.sharedInstance.procurePosts { (posts, error) -> () in
+            
+        }
+    }
+    
     func didReceiveLocationUpdate(notification: NSNotification) {
         if let location = notification.userInfo?[kLocationKey] as? CLLocation {
             //handle location

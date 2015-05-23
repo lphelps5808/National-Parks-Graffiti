@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>474C8C37-8349-4ABD-B5AF-A7F5F0B8F3AC</string>
+	<key>IDESourceControlProjectName</key>
+	<string>NationalParkGraffiti</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E7856260782111378C986C03FD3444D15B7E8970</key>
+		<string>github.com:lphelps5808/National-Parks-Graffiti.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>NationalParkGraffiti.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E7856260782111378C986C03FD3444D15B7E8970</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:lphelps5808/National-Parks-Graffiti.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E7856260782111378C986C03FD3444D15B7E8970</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E7856260782111378C986C03FD3444D15B7E8970</string>
+			<key>IDESourceControlWCCName</key>
+			<string>NationalParkGraffiti</string>
+		</dict>
+	</array>
+</dict>
+</plist>

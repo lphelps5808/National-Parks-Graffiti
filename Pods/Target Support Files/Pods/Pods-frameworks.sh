@@ -48,8 +48,28 @@ code_sign() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework 'AWSCore.framework'
+  install_framework 'AWSS3.framework'
   install_framework 'Alamofire.framework'
+  install_framework 'Bolts.framework'
+  install_framework 'GZIP.framework'
+  install_framework 'Mantle.framework'
+  install_framework 'Reachability.framework'
+  install_framework 'SwiftyJSON.framework'
+  install_framework 'TMCache.framework'
+  install_framework 'UICKeyChainStore.framework'
+  install_framework 'XMLDictionary.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework 'AWSCore.framework'
+  install_framework 'AWSS3.framework'
   install_framework 'Alamofire.framework'
+  install_framework 'Bolts.framework'
+  install_framework 'GZIP.framework'
+  install_framework 'Mantle.framework'
+  install_framework 'Reachability.framework'
+  install_framework 'SwiftyJSON.framework'
+  install_framework 'TMCache.framework'
+  install_framework 'UICKeyChainStore.framework'
+  install_framework 'XMLDictionary.framework'
 fi

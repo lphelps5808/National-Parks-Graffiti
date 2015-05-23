@@ -48,6 +48,7 @@ code_sign() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework 'AWSCognito.framework'
   install_framework 'AWSCore.framework'
   install_framework 'AWSS3.framework'
   install_framework 'Alamofire.framework'
@@ -61,6 +62,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'XMLDictionary.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework 'AWSCognito.framework'
   install_framework 'AWSCore.framework'
   install_framework 'AWSS3.framework'
   install_framework 'Alamofire.framework'

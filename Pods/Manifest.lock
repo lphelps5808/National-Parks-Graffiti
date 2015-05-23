@@ -1,5 +1,11 @@
 PODS:
   - Alamofire (1.2.2)
+  - AWSCognito (2.1.1):
+    - AWSCore (~> 2.1.1)
+    - Bolts (~> 1.1.0)
+    - Mantle (~> 1.4)
+    - Reachability (~> 3.1)
+    - UICKeyChainStore (~> 2.0)
   - AWSCore (2.1.1):
     - Bolts (~> 1.1.0)
     - GZIP (~> 1.0.3)
@@ -30,11 +36,13 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 1.2)
+  - AWSCognito
   - AWSS3
   - SwiftyJSON (>= 2.2)
 
 SPEC CHECKSUMS:
   Alamofire: 11a6022f5089887d92ffb5a3014c97a0a915ab98
+  AWSCognito: c251f1f166c74343493451e238ca7157e1e33dda
   AWSCore: 0e82eabc27a96d765b1e2ad4d30b96c1cd298300
   AWSS3: 891d269735be0f3c63eab5a2d1ee9d788f2c64ee
   Bolts: aac24961496d504aa56fc267cde95162a71bac39

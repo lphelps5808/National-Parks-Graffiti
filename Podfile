@@ -5,3 +5,4 @@ use_frameworks!
 pod 'Alamofire', '~> 1.2'
 pod 'SwiftyJSON', '>= 2.2'
 pod 'AWSS3'
+pod 'AWSCognito'

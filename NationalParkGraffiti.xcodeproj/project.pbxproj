@@ -19,6 +19,7 @@
 		1079AE801AF6FEF100414AE4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1079AE7F1AF6FEF100414AE4 /* Images.xcassets */; };
 		1079AE831AF6FEF100414AE4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1079AE811AF6FEF100414AE4 /* LaunchScreen.xib */; };
 		1079AE8F1AF6FEF100414AE4 /* NationalParkGraffitiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079AE8E1AF6FEF100414AE4 /* NationalParkGraffitiTests.swift */; };
+		10BAC2811B1103E900F6649C /* AmazonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAC2801B1103E900F6649C /* AmazonHelper.swift */; };
 		10F8B11F1B10E43F00382AA1 /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F8B11E1B10E43F00382AA1 /* PostsTableViewController.swift */; };
 		BB5BAA78DD783BE7A9DECACD /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21C27E6FBE727C8D8C403380 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -52,6 +53,7 @@
 		1079AE881AF6FEF100414AE4 /* NationalParkGraffitiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NationalParkGraffitiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1079AE8D1AF6FEF100414AE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1079AE8E1AF6FEF100414AE4 /* NationalParkGraffitiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalParkGraffitiTests.swift; sourceTree = "<group>"; };
+		10BAC2801B1103E900F6649C /* AmazonHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmazonHelper.swift; sourceTree = "<group>"; };
 		10F8B11E1B10E43F00382AA1 /* PostsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
 		21C27E6FBE727C8D8C403380 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		221007ED028A847E43469C2A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				1079AE731AF6FEF100414AE4 /* Supporting Files */,
 				10273A1D1B06DF5C00A1884D /* NationalParkGraffiti-Bridging-Header.h */,
 				10F8B11E1B10E43F00382AA1 /* PostsTableViewController.swift */,
+				10BAC2801B1103E900F6649C /* AmazonHelper.swift */,
 			);
 			path = NationalParkGraffiti;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				10273A201B06DF5C00A1884D /* Constants.m in Sources */,
 				10273A1C1B0596BD00A1884D /* LocationManager.swift in Sources */,
 				10F8B11F1B10E43F00382AA1 /* PostsTableViewController.swift in Sources */,
+				10BAC2811B1103E900F6649C /* AmazonHelper.swift in Sources */,
 				1079AE7B1AF6FEF100414AE4 /* ViewController.swift in Sources */,
 				1079AE761AF6FEF100414AE4 /* AppDelegate.swift in Sources */,
 				1079AE791AF6FEF100414AE4 /* NationalParkGraffiti.xcdatamodeld in Sources */,

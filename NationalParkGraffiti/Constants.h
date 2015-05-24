@@ -13,6 +13,5 @@ extern NSString* const kLocationNotification;
 extern NSString* const kLocationErrorNotification;
 
 extern NSString* const kS3BucketName;
-extern NSString* const kCognitoIdentityPoolId;
 extern const AWSRegionType kCognitoRegionType;
 extern const AWSRegionType kDefaultServiceRegionType;

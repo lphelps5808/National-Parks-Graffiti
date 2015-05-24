@@ -11,7 +11,7 @@ import AWSS3
 
 private let _sharedinstance = AmazonHelper()
 
-typealias ImageUploadCompletionBlock = (succes: Bool, error: NSError?) -> ()
+typealias ImageUploadCompletionBlock = (success: Bool, error: NSError?) -> ()
 
 class AmazonHelper {
     
@@ -54,7 +54,7 @@ class AmazonHelper {
                     println("upload() failed: [\(error)]")
                 }
                 
-                completion(succes: false, error: error)
+                completion(success: false, error: error)
             }
             
             if let exception = task.exception {
@@ -63,7 +63,7 @@ class AmazonHelper {
             
             if task.result != nil {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    completion(succes: true, error: nil)
+                    completion(success: true, error: nil)
                 })
             }
             return nil
@@ -72,16 +72,17 @@ class AmazonHelper {
     
     func uploadImage(image: UIImage, completion: ImageUploadCompletionBlock) {
         let fileName = NSProcessInfo.processInfo().globallyUniqueString.stringByAppendingString(".png")
-        let filePath = NSTemporaryDirectory().stringByAppendingPathComponent("upload").stringByAppendingPathComponent(fileName)
+        let filePath = NSTemporaryDirectory().stringByAppendingPathComponent(fileName)
         let imageData = UIImagePNGRepresentation(image)
-        imageData.writeToFile(filePath, atomically: true)
-        
-        let uploadRequest = AWSS3TransferManagerUploadRequest()
-        uploadRequest.body = NSURL(fileURLWithPath: filePath)
-        uploadRequest.key = fileName
-        uploadRequest.bucket = kS3BucketName
-        
-        upload(uploadRequest, completion: completion)
+        if imageData.writeToFile(filePath, atomically: true) {
+            let uploadRequest = AWSS3TransferManagerUploadRequest()
+            uploadRequest.body = NSURL(fileURLWithPath: filePath)
+            uploadRequest.key = fileName
+            uploadRequest.bucket = kS3BucketName
+            
+            upload(uploadRequest, completion: completion)
+        }
+        // handle error if write to file fails?
     }
     
 }

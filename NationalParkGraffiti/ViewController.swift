@@ -34,6 +34,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         
         
+        AmazonHelper.sharedInstance.uploadImage(image, completion: { (success, error) -> () in
+            if success == true {
+                // then tell our rails server that we should create a new entry (and with our image url).
+                
+                // a yet to be implemented POST request on our APIManager
+                
+            }
+        })
+        
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

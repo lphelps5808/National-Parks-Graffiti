@@ -8,15 +8,23 @@
 
 import UIKit
 
-class PostsTableViewController: UITableViewController {
+class PostsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var dataSource = [GPost]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        procurePosts()
+
+        
+        
+        //procurePosts()
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        CameraHelper.presentCameraOnController(controller: self, delegate: self)
+    }
+    
     func procurePosts() {
         APIManager.sharedInstance.procurePosts { (posts, error) -> () in
             if let posts = posts where error == nil {
@@ -61,6 +69,26 @@ class PostsTableViewController: UITableViewController {
         return cell
     }
 
+    
+    //MARK: - UIImagePickerController Delegate
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        
+        let scaledImage = CameraHelper.downsampleImage(image)
+        
+        AmazonHelper.sharedInstance.uploadImage(scaledImage, completion: { (success, error) -> () in
+            if success == true {
+                // then tell our rails server that we should create a new entry (and with our image url).
+                
+                // a yet to be implemented POST request on our APIManager
+                
+                println("Image upload success!")
+            }
+        })
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.

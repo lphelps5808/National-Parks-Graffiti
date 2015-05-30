@@ -16,6 +16,7 @@ struct GPost {
     var userID: String
     var userName: String
     var park: String
+    var dateString: String?
     
     static func postsForJSON(json: AnyObject) -> [GPost] {
         var postsArray = [GPost]()
@@ -36,6 +37,7 @@ struct GPost {
         let lat = json["lat"].doubleValue
         let lon = json["lon"].doubleValue
         let coordinate = CLLocationCoordinate2DMake(lat, lon)
+        let createdAtDate = json["created_at"].stringValue
         
         return GPost(coordinate: coordinate, imageString: imageString, userID: userId, userName: userName, park: park)
     }

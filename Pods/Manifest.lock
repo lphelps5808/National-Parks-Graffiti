@@ -25,6 +25,8 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.1.5)
   - GZIP (1.0.3)
+  - ISO8601DateFormatter (0.7)
+  - Kingfisher (1.4.1)
   - Mantle (1.5.4):
     - Mantle/extobjc (= 1.5.4)
   - Mantle/extobjc (1.5.4)
@@ -38,6 +40,8 @@ DEPENDENCIES:
   - Alamofire (~> 1.2)
   - AWSCognito
   - AWSS3
+  - ISO8601DateFormatter (~> 0.7)
+  - Kingfisher (~> 1.4)
   - SwiftyJSON (>= 2.2)
 
 SPEC CHECKSUMS:
@@ -47,6 +51,8 @@ SPEC CHECKSUMS:
   AWSS3: 891d269735be0f3c63eab5a2d1ee9d788f2c64ee
   Bolts: aac24961496d504aa56fc267cde95162a71bac39
   GZIP: f0863fda354e8f83316508c0a2c7bbe385e39129
+  ISO8601DateFormatter: ab926648eebe497f4d167c0fd083992f959f1274
+  Kingfisher: 962a21cdc2a7b0fa63be3b2c45ea6f180feda535
   Mantle: 60acd0cd363e27d945bda0a6b8e90577112d28f3
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c

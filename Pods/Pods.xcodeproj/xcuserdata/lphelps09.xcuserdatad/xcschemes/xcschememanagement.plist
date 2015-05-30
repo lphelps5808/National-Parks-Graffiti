@@ -34,6 +34,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-ISO8601DateFormatter.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Kingfisher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Mantle.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,67 +82,77 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4AAFF803F422CB418DCC1118</key>
+		<key>1A811B13645062ADB6B1348D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4F0B1BEAE9448F054B1CE2B7</key>
+		<key>3EAAEEF2E77AB0568BCC7BA0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>88F9F7C842E4D7D2D92A378C</key>
+		<key>476A90088243885DF3623D17</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>985BB1F93C068DC03A5332AA</key>
+		<key>5B61A7C701D067EBED292ADA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AA601C22BD8CE7AF8E159091</key>
+		<key>6B584BACA3192F29F579A587</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C2B8F4821FCD94374B602330</key>
+		<key>79B662257C7B3DBE8931B8EA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D0A326C84D5EC5548D18EE0C</key>
+		<key>7C4CA6BFA9A30F2637B3CDB1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D57AC4BEA7F8E8D41FC172A3</key>
+		<key>7FF7BEF9932F52285C912C18</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DD77EF66972748B62893996E</key>
+		<key>823AEA08E6C77C09DEBDE550</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E8CC7F4FC2500B3223B0A4B6</key>
+		<key>9EA9974A8EE25BB20B1E2948</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EAB42D2975F6A89034B4742A</key>
+		<key>B3D76A5C06AE5572C6372ED8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F3AA7F4A92E5806A856A4200</key>
+		<key>BE1F30D3FFFDC336BEFC9116</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F697FDDD4CE002BE0207F0DC</key>
+		<key>BE9329265E5734A2C1A13E8E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EBD21C17E85FFB9D18E4F1E9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F83CDA432AF9D830ECF04730</key>
 		<dict>
 			<key>primary</key>
 			<true/>

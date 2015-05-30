@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Kingfisher
+
+private let __postsCellIdentifer = "customTableViewCellIdentifer"
 
 class PostsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -51,30 +54,26 @@ class PostsTableViewController: UITableViewController, UIImagePickerControllerDe
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
         return dataSource.count
     }
 
     // what does the reuse Identifier do?
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-
-        
-        
-        cell.textLabel?.text = dataSource[indexPath.row].imageString
-        
-
+        let cell = tableView.dequeueReusableCellWithIdentifier(__postsCellIdentifer, forIndexPath: indexPath) as! CustomTableViewCell
+        configureCell(cell, indexPath: indexPath)
         return cell
     }
 
+    func configureCell(cell: CustomTableViewCell, indexPath: NSIndexPath) {
+        let post = dataSource[indexPath.row]
+        cell.customCellLocationLabel.text = "\(post.coordinate.latitude), \(post.coordinate.longitude)"
+        cell.customCellDateLabel.text = 
+    }
     
     //MARK: - UIImagePickerController Delegate
     
@@ -90,6 +89,7 @@ class PostsTableViewController: UITableViewController, UIImagePickerControllerDe
                     if success == true {
                         
                         // reload our table
+                        self.procurePosts()
                         
                         println("this worked")
                     } else {

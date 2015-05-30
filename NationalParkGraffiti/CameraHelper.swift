@@ -11,7 +11,7 @@ import MobileCoreServices
 import ImageIO
 import CoreGraphics
 
-private let _imageResizeFactor: CGFloat = 0.25
+private let _imageResizeFactor: CGFloat = 0.05
 
 struct CameraHelper {
     static func presentCameraOnController(#controller: UIViewController, delegate: protocol<UIImagePickerControllerDelegate, UINavigationControllerDelegate>) {
@@ -23,6 +23,8 @@ struct CameraHelper {
             imagePicker.mediaTypes = [kUTTypeImage]
             imagePicker.allowsEditing = false
             
+            LocationManager.sharedInstanceLM.procureLocation()
+            
             controller.presentViewController(imagePicker, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "Error", message: "Camera Unavailable", preferredStyle: UIAlertControllerStyle.Alert)
@@ -31,18 +33,20 @@ struct CameraHelper {
             controller.presentViewController(alert, animated: true, completion: nil)
         }
     }
-    
-    static func downsampleImage(image: UIImage) -> UIImage {
-        let size = CGSizeApplyAffineTransform(image.size, CGAffineTransformMakeScale(_imageResizeFactor, _imageResizeFactor))
+}
+
+extension UIImage {
+    func downsampledImage() -> UIImage {
+        let size = CGSizeApplyAffineTransform(self.size, CGAffineTransformMakeScale(_imageResizeFactor, _imageResizeFactor))
         let hasAlpha = false
         let scale: CGFloat = 0.0
         
         UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
-        image.drawInRect(CGRect(origin: CGPointZero, size: size))
+        self.drawInRect(CGRect(origin: CGPointZero, size: size))
         
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return image
+        return scaledImage
     }
 }

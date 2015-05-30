@@ -14,7 +14,6 @@
 		10273A261B083C8F00A1884D /* GPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10273A251B083C8F00A1884D /* GPost.swift */; };
 		1079AE761AF6FEF100414AE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079AE751AF6FEF100414AE4 /* AppDelegate.swift */; };
 		1079AE791AF6FEF100414AE4 /* NationalParkGraffiti.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1079AE771AF6FEF100414AE4 /* NationalParkGraffiti.xcdatamodeld */; };
-		1079AE7B1AF6FEF100414AE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079AE7A1AF6FEF100414AE4 /* ViewController.swift */; };
 		1079AE7E1AF6FEF100414AE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1079AE7C1AF6FEF100414AE4 /* Main.storyboard */; };
 		1079AE801AF6FEF100414AE4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1079AE7F1AF6FEF100414AE4 /* Images.xcassets */; };
 		1079AE831AF6FEF100414AE4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1079AE811AF6FEF100414AE4 /* LaunchScreen.xib */; };
@@ -48,7 +47,6 @@
 		1079AE741AF6FEF100414AE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1079AE751AF6FEF100414AE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1079AE781AF6FEF100414AE4 /* NationalParkGraffiti.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NationalParkGraffiti.xcdatamodel; sourceTree = "<group>"; };
-		1079AE7A1AF6FEF100414AE4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1079AE7D1AF6FEF100414AE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1079AE7F1AF6FEF100414AE4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1079AE821AF6FEF100414AE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -107,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				1079AE751AF6FEF100414AE4 /* AppDelegate.swift */,
-				1079AE7A1AF6FEF100414AE4 /* ViewController.swift */,
 				10273A211B06E84900A1884D /* NotificationManager.swift */,
 				10273A1B1B0596BD00A1884D /* LocationManager.swift */,
 				10273A231B08358800A1884D /* APIManager.swift */,
@@ -329,7 +326,6 @@
 				10F8B11F1B10E43F00382AA1 /* PostsTableViewController.swift in Sources */,
 				10BAC2811B1103E900F6649C /* AmazonHelper.swift in Sources */,
 				10BAC2851B115E1500F6649C /* Cognito.swift in Sources */,
-				1079AE7B1AF6FEF100414AE4 /* ViewController.swift in Sources */,
 				1079AE761AF6FEF100414AE4 /* AppDelegate.swift in Sources */,
 				1079AE791AF6FEF100414AE4 /* NationalParkGraffiti.xcdatamodeld in Sources */,
 				10273A241B08358800A1884D /* APIManager.swift in Sources */,

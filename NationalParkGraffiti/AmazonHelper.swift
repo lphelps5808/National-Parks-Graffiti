@@ -10,8 +10,9 @@ import Foundation
 import AWSS3
 
 private let _sharedinstance = AmazonHelper()
+private let kBaseAmazonURL = "https://s3.amazonaws.com/parkgraffiti/"
 
-typealias ImageUploadCompletionBlock = (success: Bool, error: NSError?) -> ()
+typealias ImageUploadCompletionBlock = (success: Bool, error: NSError?, fileName: String?) -> ()
 
 class AmazonHelper {
     
@@ -29,7 +30,7 @@ class AmazonHelper {
         AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
     }
     
-    private func upload(uploadRequest: AWSS3TransferManagerUploadRequest, completion: ImageUploadCompletionBlock) {
+    private func upload(uploadRequest: AWSS3TransferManagerUploadRequest, completion: ImageUploadCompletionBlock, fileName: String) {
         let transferManager = AWSS3TransferManager.defaultS3TransferManager()
         
         transferManager.upload(uploadRequest).continueWithBlock { (task) -> AnyObject! in
@@ -54,7 +55,7 @@ class AmazonHelper {
                     println("upload() failed: [\(error)]")
                 }
                 
-                completion(success: false, error: error)
+                completion(success: false, error: error, fileName: nil)
             }
             
             if let exception = task.exception {
@@ -63,7 +64,7 @@ class AmazonHelper {
             
             if task.result != nil {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    completion(success: true, error: nil)
+                    completion(success: true, error: nil, fileName: fileName)
                 })
             }
             return nil
@@ -74,15 +75,22 @@ class AmazonHelper {
         let fileName = NSProcessInfo.processInfo().globallyUniqueString.stringByAppendingString(".png")
         let filePath = NSTemporaryDirectory().stringByAppendingPathComponent(fileName)
         let imageData = UIImagePNGRepresentation(image)
+        
+        println("uploading \(imageData.length) image bytes.")
+        
         if imageData.writeToFile(filePath, atomically: true) {
             let uploadRequest = AWSS3TransferManagerUploadRequest()
             uploadRequest.body = NSURL(fileURLWithPath: filePath)
             uploadRequest.key = fileName
             uploadRequest.bucket = kS3BucketName
             
-            upload(uploadRequest, completion: completion)
+            upload(uploadRequest, completion: completion, fileName: fileName)
         }
         // handle error if write to file fails?
+    }
+    
+    class func urlStringForFileName(fileName: String) -> String {
+        return "\(kBaseAmazonURL)\(fileName)"
     }
     
 }

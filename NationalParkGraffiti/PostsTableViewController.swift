@@ -10,19 +10,25 @@ import UIKit
 
 class PostsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    var lulz = false
+    
     var dataSource = [GPost]()
+    @IBOutlet weak var postPhotoView: UIImageView!
+    @IBOutlet weak var PostLocationLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        
-        //procurePosts()
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        CameraHelper.presentCameraOnController(controller: self, delegate: self)
+        
+        if lulz == false {
+            lulz = !lulz
+            
+            CameraHelper.presentCameraOnController(controller: self, delegate: self)
+        }
+        
     }
     
     func procurePosts() {
@@ -74,18 +80,26 @@ class PostsTableViewController: UITableViewController, UIImagePickerControllerDe
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         
-        let scaledImage = CameraHelper.downsampleImage(image)
+        let start = CFAbsoluteTimeGetCurrent()
         
-        AmazonHelper.sharedInstance.uploadImage(scaledImage, completion: { (success, error) -> () in
-            if success == true {
-                // then tell our rails server that we should create a new entry (and with our image url).
-                
-                // a yet to be implemented POST request on our APIManager
-                
-                println("Image upload success!")
+        let scaledImage = image.downsampledImage()
+        AmazonHelper.sharedInstance.uploadImage(scaledImage, completion: { (success, error, fileName) -> () in
+            if let fileName = fileName, location = LocationManager.sharedInstanceLM.myCurrentLocation where success == true {
+                let post = GPost(coordinate: location.coordinate, imageString: AmazonHelper.urlStringForFileName(fileName), userID: "test", userName: "test", park: "test")
+                APIManager.sharedInstance.submitPost(post, completion: { (success, error) -> () in
+                    if success == true {
+                        
+                        // reload our table
+                        
+                        println("this worked")
+                    } else {
+                        println("some fails")
+                    }
+                })
+            } else {
+                println("something bad happned")
             }
         })
-        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

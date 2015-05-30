@@ -39,6 +39,10 @@ struct GPost {
         
         return GPost(coordinate: coordinate, imageString: imageString, userID: userId, userName: userName, park: park)
     }
+    
+    func parameters() -> [String : AnyObject] {
+        return ["g_post" : ["lat" : coordinate.latitude, "lon" : coordinate.longitude, "image" : imageString, "user_id" : userID, "user_name" : userName, "park" : park]]
+    }
 
 }
     

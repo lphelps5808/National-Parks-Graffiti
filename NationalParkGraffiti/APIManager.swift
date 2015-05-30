@@ -9,12 +9,12 @@
 import Foundation
 import Alamofire
 
-
-private let kBaseAPI = "http://localhost:3000/"
+private let kBaseAPI = "http://192.168.5.110:3000/"
 private let kGPostsEndpoint = "g_posts"
 
 private let _sharedInstance = APIManager()
 
+typealias SubmitCompletionBlock = (success: Bool, error: NSError?) -> ()
 typealias PostsCompletionBlock = (posts: [GPost]?, error: NSError?) -> ()
 
 class APIManager {
@@ -43,5 +43,21 @@ class APIManager {
             }
         }
     }
+    
+    
+    func submitPost(post: GPost, completion: SubmitCompletionBlock) {
+        Alamofire.request(.POST, "\(kBaseAPI)\(kGPostsEndpoint)", parameters: post.parameters(), encoding: .URL).response { (_, response, data, error) -> Void in
+            
+            
+            println(NSString(data: data as! NSData, encoding: NSUTF8StringEncoding))
+            
+            
+            var success = (response?.statusCode == 200) ? true : false
+            completion(success: success, error: error)
+        }
+        
+    }
+
+    
     
 }

@@ -13,30 +13,27 @@ private let __postsCellIdentifer = "customTableViewCellIdentifer"
 
 class PostsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    var lulz = false
-    
     var dataSource = [GPost]()
     @IBOutlet weak var postPhotoView: UIImageView!
     @IBOutlet weak var PostLocationLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        procurePosts()
     }
 
+    @IBAction func cameraPressed(sender: AnyObject) {
+        CameraHelper.presentCameraOnController(controller: self, delegate: self)
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if lulz == false {
-            lulz = !lulz
-            
-            CameraHelper.presentCameraOnController(controller: self, delegate: self)
-        }
-        
     }
     
     func procurePosts() {
         APIManager.sharedInstance.procurePosts { (posts, error) -> () in
             if let posts = posts where error == nil {
+                self.dataSource.removeAll(keepCapacity: true)
                 self.dataSource.extend(posts)
                 self.tableView.reloadData()
             } else {
@@ -72,7 +69,10 @@ class PostsTableViewController: UITableViewController, UIImagePickerControllerDe
     func configureCell(cell: CustomTableViewCell, indexPath: NSIndexPath) {
         let post = dataSource[indexPath.row]
         cell.customCellLocationLabel.text = "\(post.coordinate.latitude), \(post.coordinate.longitude)"
-        cell.customCellDateLabel.text = 
+        if let date = post.date {
+            cell.customCellDateLabel.text = DateFormatter.dateStringForDate(date)
+        }
+        cell.customCellImageView.kf_setImageWithURL(NSURL(string: post.imageString)!)
     }
     
     //MARK: - UIImagePickerController Delegate
@@ -84,7 +84,7 @@ class PostsTableViewController: UITableViewController, UIImagePickerControllerDe
         let scaledImage = image.downsampledImage()
         AmazonHelper.sharedInstance.uploadImage(scaledImage, completion: { (success, error, fileName) -> () in
             if let fileName = fileName, location = LocationManager.sharedInstanceLM.myCurrentLocation where success == true {
-                let post = GPost(coordinate: location.coordinate, imageString: AmazonHelper.urlStringForFileName(fileName), userID: "test", userName: "test", park: "test")
+                let post = GPost(coordinate: location.coordinate, imageString: AmazonHelper.urlStringForFileName(fileName), userID: "test", userName: "test", park: "test", date: nil)
                 APIManager.sharedInstance.submitPost(post, completion: { (success, error) -> () in
                     if success == true {
                         

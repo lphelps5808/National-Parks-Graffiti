@@ -10,16 +10,18 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var customCellImage: UIImageView!
+    @IBOutlet weak var customCellImageView: UIImageView!
     @IBOutlet weak var customCellLocationLabel: UILabel!
     @IBOutlet weak var customCellDateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        customCellImageView.clipsToBounds = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
 }

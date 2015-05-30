@@ -18,19 +18,19 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CkV-Px-v8j" id="Xhx-Gc-Vs1">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ofS-bN-cnQ">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ofS-bN-cnQ">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="199"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5JX-ib-ZCi">
                                             <rect key="frame" x="8" y="170" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLy-6S-ovD">
                                             <rect key="frame" x="550" y="8" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Wi-Wa-KYP">
@@ -57,7 +57,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="customCellDateLabel" destination="5JX-ib-ZCi" id="4VU-Mm-OCC"/>
-                                    <outlet property="customCellImage" destination="ofS-bN-cnQ" id="Ffj-Z1-h5V"/>
+                                    <outlet property="customCellImageView" destination="ofS-bN-cnQ" id="IXJ-i3-oZH"/>
                                     <outlet property="customCellLocationLabel" destination="GLy-6S-ovD" id="qcV-XW-l30"/>
                                 </connections>
                             </tableViewCell>
@@ -67,7 +67,13 @@
                             <outlet property="delegate" destination="3y7-xq-Dra" id="eEn-ww-Mpn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="yv7-bJ-Mnx"/>
+                    <navigationItem key="navigationItem" id="yv7-bJ-Mnx">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="e2w-tg-xQt">
+                            <connections>
+                                <action selector="cameraPressed:" destination="3y7-xq-Dra" id="DZk-6a-fbN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jwb-BY-kdO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
